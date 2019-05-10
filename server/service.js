@@ -66,7 +66,7 @@ let service = {
     },
 
     getOpenRooms: () => {
-        return _.filter(service.rooms, 'open');
+        return _.filter(service.rooms, (room) => { return room.status === 'OPEN'});
     },
 
     registerUser: (user, socket) => {
