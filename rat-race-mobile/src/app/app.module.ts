@@ -9,6 +9,10 @@ import {LandingPageService} from "./landing-page/landing-page.service";
 import {RedirectService} from "./common/redirect.service";
 import {UserService} from "./common/user.service";
 import {FormsModule} from "@angular/forms";
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [LandingPageService, RedirectService, UserService],
   bootstrap: [AppComponent]

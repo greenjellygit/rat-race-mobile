@@ -1,13 +1,16 @@
 import {Injectable} from "@angular/core";
-import {Observable, of, Subscription} from "rxjs";
+import { Observable, of, Subject, Subscription } from "rxjs";
 import {Room, RoomCreationRequest} from "../model/landing-page.model";
 import {RedirectService} from "../common/redirect.service";
 import {UserService} from "../common/user.service";
+import { Socket } from 'ngx-socket-io';
 
 @Injectable()
 export class LandingPageService {
 
-  constructor(private redirectService: RedirectService, private userService: UserService) {}
+  constructor(private redirectService: RedirectService,
+              private userService: UserService,
+              private socket: Socket) {}
 
   createRoomAndJoin(): void {
     let request: RoomCreationRequest = new RoomCreationRequest();
@@ -23,8 +26,12 @@ export class LandingPageService {
   }
 
   private requestRoomCreation(request: RoomCreationRequest): Observable<string> {
-    // tutaj sie podepnij httclientem - twortzenie pokoju
-    return of('ptak69')
+    let subject: Subject<string> = new Subject();
+    this.socket.emit('createRoom', request, (result: {room: string}) => {
+      subject.next(result.room);
+    });
+
+    return subject.asObservable();
   }
 
   getRooms(): Observable<Room[]> {

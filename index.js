@@ -6,9 +6,13 @@ var io = require('socket.io')(http);
 var api = require('./server/api.js');
 
 // to use later
-// app.use(exp.static('resources'));
+app.use('/', exp.static('rat-race-mobile/dist/rat-race-mobile'));
 
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
+  res.sendfile('rat-race-mobile/dist/rat-race-mobile/index.html');
+});*/
+
+app.get('/test', function(req, res){
   res.sendfile('server/test/index.html');
 });
 
