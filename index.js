@@ -1,18 +1,26 @@
-var PORT = 3000;
+var exp = require('express');
+var app = exp();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-var express = require('express');
-var path = require('path');
-var routes = require('./routes/index');
+app.use(exp.static('resources'));
 
-var app = express();
-app.use('/', express.static(path.join(__dirname, 'app')));
-var server = require('http').Server(app);
+app.get('/', function(req, res){
+  res.sendfile('test/index.html');
+});
 
-
-var io = require('socket.io')(server);
-
-
-server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
 io.on('connection', function(socket){
-    console.log('a user connected');
+  console.log('a user connected');
+
+  socket.on('tweet', function (name, fn) {
+    fn(name + ' says ');
+  });
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
