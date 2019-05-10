@@ -10,8 +10,20 @@ class Room {
     }
 }
 
+class User {
+    constructor(name, socket) {
+        this.name = name;
+        this.socket = socket;
+    }
+}
+
 let service = {
     rooms: [],
+    users: [],
+
+    getRoom: (room) => {
+        return _.find(service.rooms, {'name': room});
+    },
 
     createRoom: (user) => {
         let room = new Room(randomWords()+Math.round(Math.random()*100), user);
@@ -20,9 +32,25 @@ let service = {
     },
 
     joinRoom: (user, room) => {
-        let existingRoom = _.find(users, { 'name': room});
+        let existingRoom = service.getRoom(room);
         if (existingRoom) {
             existingRoom.users.push(user);
+            existingRoom.users = _.uniq(existingRoom.users);
+            return {
+                result: true,
+                games: ['buttons', 'acceleration', 'example'],
+                roomDetails: existingRoom
+            }
+        }
+        return {
+            result: false
+        }
+    },
+
+    leaveRoom: (user, room) => {
+        let existingRoom = service.getRoom(room);
+        if (existingRoom) {
+            existingRoom.users = _.difference(existingRoom.users, user);
             return true;
         }
         return false;
@@ -30,6 +58,11 @@ let service = {
 
     getOpenRooms: () => {
         return _.filter(service.rooms, 'open');
+    },
+
+    registerUser: (user, socket) => {
+        service.users = _.filter(service.users, (u) => { return u.name !== user});
+        service.users.push(new User(user, socket));
     }
 
 };
