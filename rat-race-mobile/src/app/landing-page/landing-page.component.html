@@ -1,19 +1,26 @@
-<header>
-  <h2>Witojcie</h2>
+<header class="header">
+  <h2 class="main-title">Rat Race</h2>
+  <img class="rats-animation" src="/assets/rat.gif">
 </header>
+<hr/>
 <div>
-  Podaj swój nick:
-  <input [(ngModel)]="user">
-  <hr/>
   <div>
-    <button (click)="createRoom()">Utwórz pokój</button>
+    Nick <input class="crazy-input" [(ngModel)]="user">
   </div>
   <hr/>
   <div>
-    ... lub wybierz pokój z listy:
-    <div *ngFor="let room of (rooms$ | async)">
-      {{room.name}}, ({{room.playersCount}} graczy), autor: {{room.authorName}}
-      <button (click)="joinRoom(room.name)">Dołącz</button>
+    <button class="button-red" (click)="createRoom()">Create room</button>
+  </div>
+  <hr/>
+  <div>
+    <div class="list-header">
+      ... OR SELECT FROM LIST
+    </div>
+    <div class="rooms-list">
+      <div *ngFor="let room of (rooms$ | async)" class="list-item">
+        {{room.name}} <span class="big-dot">●</span>  {{room.playersCount}} guests <span class="big-dot">●</span> By ~ {{room.authorName}}
+        <button (click)="joinRoom(room.name)" class="button-red margin-left-10">Join</button>
+      </div>
     </div>
   </div>
 </div>

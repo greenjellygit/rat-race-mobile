@@ -10,6 +10,7 @@ import {RedirectService} from "./common/redirect.service";
 import {UserService} from "./common/user.service";
 import {FormsModule} from "@angular/forms";
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DialNumberGameComponent } from './game/dial-number/dial-number-game.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -19,7 +20,8 @@ import {RoomService} from "./common/room.service";
   declarations: [
     AppComponent,
     LandingPageComponent,
-    RoomComponent
+    RoomComponent,
+    DialNumberGameComponent
   ],
   imports: [
     BrowserModule,

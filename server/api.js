@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var service = require('./service.js');
 var _ = require('lodash')
 
