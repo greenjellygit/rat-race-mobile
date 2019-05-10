@@ -1,1 +1,10 @@
-<button *ngFor="let button of buttons">{{button}}</button>
+<div>
+  Wpisz poniższą kombinację cyfr:<br>
+  <span [innerHTML]="doneDigits.join(', ')" style="color: red;"></span> /
+  <span [innerHTML]="todoDigits.join(', ')" style="color: black;"></span>
+</div>
+<div>
+<button *ngFor="let button of buttons" style="width: 30%; height: 30%; margin: 1%">
+  {{button}}
+</button>
+</div>
