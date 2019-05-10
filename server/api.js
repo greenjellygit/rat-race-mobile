@@ -1,4 +1,5 @@
 var service = require('./service.js');
+var _ = require('lodash')
 
 let api = {
     init: (io) => {

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LandingPageService} from "./landing-page.service";
 import {UserService} from "../common/user.service";
+import {Observable} from "rxjs";
+import {Room} from "../model/landing-page.model";
 
 @Component({
   selector: 'app-landing-page',
@@ -9,11 +11,13 @@ import {UserService} from "../common/user.service";
 })
 export class LandingPageComponent implements OnInit {
 
+  _rooms: Observable<Room[]>
+
   constructor(private landingPageService: LandingPageService,
               public userService: UserService) { }
 
   ngOnInit() {
-
+    this._rooms = this.landingPageService.getRooms()
   }
 
   createRoom() {
@@ -25,7 +29,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   get rooms$() {
-    return this.landingPageService.getRooms()
+    return this._rooms
   }
 
   get user() {

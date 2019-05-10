@@ -13,6 +13,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
+import {RoomService} from "./common/room.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     FormsModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [LandingPageService, RedirectService, UserService],
+  providers: [LandingPageService, RedirectService, UserService, RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 export interface Room {
   name: string,
-  playersCount: number,
-  authorName: string
+  users: string[],
+  author: string,
+  open: boolean
 }
 
 export class RoomCreationRequest {
@@ -11,4 +12,8 @@ export class RoomCreationRequest {
 export interface RoomJoiningRequest {
   user: string,
   room: string
+}
+
+export interface RoomsResponse {
+  rooms: Room[]
 }
