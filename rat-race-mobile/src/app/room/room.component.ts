@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../common/room.service";
 import {RedirectService} from "../common/redirect.service";
 import {RoomDetails, RoomJoiningResponse} from "../model/room.model";
+import {UserService} from "../common/user.service";
 
 @Component({
   selector: 'app-room',
@@ -19,12 +20,13 @@ export class RoomComponent implements OnInit {
   constructor(private socket: Socket,
               private route: ActivatedRoute,
               private roomService: RoomService,
-              private redirectService: RedirectService) { }
+              private userService: UserService,
+              private redirectService: RedirectService) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.roomService.joinRoom(params['id']).subscribe( (details) =>
-        {
+      this.roomService.joinRoom(params['id']).subscribe((details) => {
           return this._roomDetails$.next(details)
         }
       )
@@ -46,11 +48,19 @@ export class RoomComponent implements OnInit {
     return this._roomDetails
   }
 
+  get userName(): string {
+    return this.userService.getUserName()
+  }
+
   private subscribeForRoomChanges() {
     // todo websocket
   }
 
   private redirectToLandingPage() {
     this.redirectService.redirect('/')
+  }
+
+  startGame() {
+    this.roomService.startGame(this.roomDetails.roomDetails.name)
   }
 }

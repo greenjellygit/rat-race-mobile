@@ -17,4 +17,8 @@ export class RoomService {
     })
     return subject.asObservable()
   }
+
+  startGame(name: string) {
+    this.socket.emit('start', {room: name})
+  }
 }
