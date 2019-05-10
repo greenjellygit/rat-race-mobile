@@ -31,7 +31,7 @@ let api = {
             });
         });
     },
-    emitRoomDetails: ({room}) => {
+    emitRoomDetails: (room) => {
         let userNames = service.getRoom(room).users;
         let users = _.filter(service.users, (u) => {return _.some(userNames, u.name);});
         _.each(users, u => {
