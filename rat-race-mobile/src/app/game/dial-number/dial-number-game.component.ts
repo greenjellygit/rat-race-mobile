@@ -10,19 +10,22 @@ import * as _ from "lodash";
 })
 export class DialNumberGameComponent {
 
-  buttons: Array<number> = _.range(1,10);
+  buttons: Array<number> = _.range(1, 10);
 
   doneDigits: Array<number> = [];
-  todoDigits: Array<number> = _.map(_.range(0,9), _.random(1,9));
+  todoDigits: Array<number> = _.map(_.range(0, 9), () => {
+    return _.random(1, 9);
+  });
 
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {
+  }
 
   click(digit: number) {
     if (digit === this.todoDigits[0]) {
       this.doneDigits.push(this.todoDigits[0]);
-      _.drop(this.todoDigits);
+      this.todoDigits = _.drop(this.todoDigits);
 
-      if(this.todoDigits.length === 0) {
+      if (this.todoDigits.length === 0) {
         this.finishGame()
       }
     }
