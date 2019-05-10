@@ -1,6 +1,15 @@
-<div *ngIf="(roomDetails | async)">
-  <div *ngFor="let user of (roomDetails | async).users">
-    {{user}}
+<div *ngIf="(roomDetails)">
+  <div *ngIf="roomDetails.result">
+    Witamy w pokoju: {{roomDetails.roomDetails.name}}. Poczekaj na rozpoczęcie gry
+    <hr/>
+    Aktywni użytkownicy:
+    <br/>
+    <div *ngFor="let user of roomDetails.roomDetails.users">
+      {{user}}
+    </div>
+  </div>
+  <div *ngIf="!roomDetails.result">
+    Nie udało się dołączyć do pokoju :(
   </div>
 </div>
-<div *ngIf="(roomDetails | async)">loading...</div>
+<div *ngIf="!(roomDetails)">loading...</div>

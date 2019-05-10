@@ -13,7 +13,8 @@ import {RoomDetails, RoomJoiningResponse} from "../model/room.model";
 })
 export class RoomComponent implements OnInit {
 
-  _roomDetails: Subject<RoomDetails> = new Subject()
+  _roomDetails$: Subject<RoomJoiningResponse> = new Subject()
+  _roomDetails: RoomJoiningResponse
 
   constructor(private socket: Socket,
               private route: ActivatedRoute,
@@ -24,21 +25,25 @@ export class RoomComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.roomService.joinRoom(params['id']).subscribe( (details) =>
         {
-          console.log(details)
-          return this._roomDetails.next(details.roomDetails)
+          return this._roomDetails$.next(details)
         }
       )
       this.socket.fromEvent<RoomDetails>('roomDetails').subscribe((details) => {
-        console.log(details)
         if (details) {
-          this._roomDetails.next(details)
+          this._roomDetails$.next(
+            {
+              ...this._roomDetails,
+              roomDetails: details
+            }
+          )
         }
       })
     })
+    this._roomDetails$.subscribe((event) => this._roomDetails = event)
   }
 
-  get roomDetails(): Observable<RoomDetails> {
-    return this._roomDetails.asObservable()
+  get roomDetails(): RoomJoiningResponse {
+    return this._roomDetails
   }
 
   private subscribeForRoomChanges() {

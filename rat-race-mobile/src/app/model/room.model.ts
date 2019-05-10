@@ -2,11 +2,17 @@ export interface RoomDetails {
   name: string,
   users: string[],
   author: string,
-  open: boolean
+  status: GameStatus
 }
 
 export interface RoomJoiningResponse {
   result: boolean,
   games: string[],
   roomDetails: RoomDetails
+}
+
+export enum GameStatus {
+  OPEN,
+  RUNNING,
+  CLOSED
 }
