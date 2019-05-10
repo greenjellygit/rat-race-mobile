@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <title>SocketIO test</title>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+<body>
+Name: <input id="name" value="tweet"/><br/>
+Request:<br/><textarea id="request" rows="10" cols="20">{}</textarea><br/>
+Response:<br/><textarea id="response" rows="10" cols="20">{}</textarea><br/>
+<button onclick="send()">Tweet</button>
+</body>
+<script>
+    var socket = io();
+
+    let getNameField = () => {
+        return document.getElementById("name");
+    };
+    let getRequestField = () => {
+        return document.getElementById("request");
+    };
+    let getResponseField = () => {
+        return document.getElementById("response");
+    };
+
+    var send = function() {
+        let name = getNameField().value;
+        let request = getRequestField().value;
+        localStorage.setItem('name', name);
+        localStorage.setItem('request', request);
+
+        socket.emit(name, JSON.parse(request) , function (data) {
+            let stringResult = JSON.stringify(data);
+            console.log(`Received ${stringResult}`);
+
+            getResponseField().value = stringResult;
+            localStorage.setItem('response', stringResult);
+        });
+
+        //init fields
+        getNameField().value = localStorage.getItem('name');
+        getRequestField().value = localStorage.getItem('request');
+        getResponseField().value = localStorage.getItem('response');
+
+    };
+</script>
+</html>
