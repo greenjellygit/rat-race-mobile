@@ -1,0 +1,50 @@
+.header {
+  text-align: center;
+}
+
+.main-title {
+  font-family: FightFont;
+  text-align: center;
+  font-size: 42pt;
+  margin: 10px;
+  transform: rotate(-6deg);
+}
+
+.rats-animation {
+  width: 242px;
+  margin-top: -240px;
+  animation: go 2s linear infinite;
+  transform: translateX(340px);
+}
+
+@keyframes go {
+  100% {
+    transform: translateX(-340px);
+  }
+}
+
+:host {
+  text-align: center;
+}
+
+.list-header {
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.rooms-list div:first-child {
+  border-top: 1px solid #6d6d6d;
+}
+
+.list-item {
+  background-color: #515151;
+  border-bottom: 1px solid #6d6d6d;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
