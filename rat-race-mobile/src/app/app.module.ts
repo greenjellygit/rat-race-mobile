@@ -15,13 +15,15 @@ import { DialNumberGameComponent } from './game/dial-number/dial-number-game.com
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 import {RoomService} from "./common/room.service";
+import { GameComponent } from './room/game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     RoomComponent,
-    DialNumberGameComponent
+    DialNumberGameComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
