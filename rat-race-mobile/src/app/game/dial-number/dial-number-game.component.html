@@ -4,7 +4,7 @@
   <span [innerHTML]="todoDigits.join(', ')" style="color: black;"></span>
 </div>
 <div>
-<button *ngFor="let button of buttons" style="width: 30%; height: 30%; margin: 1%">
-  {{button}}
+<button *ngFor="let idx of buttons" (click)="click(idx)" style="width: 30%; height: 30%; margin: 1%">
+  {{idx}}
 </button>
 </div>
