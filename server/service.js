@@ -6,7 +6,7 @@ class Room {
         this.name = name;
         this.author = user;
         this.users = [user];
-        this.open = true;
+        this.status = 'OPEN';
     }
 }
 
@@ -51,6 +51,15 @@ let service = {
         let existingRoom = service.getRoom(room);
         if (existingRoom) {
             existingRoom.users = _.difference(existingRoom.users, user);
+            return true;
+        }
+        return false;
+    },
+
+    start: (room) => {
+        let existingRoom = service.getRoom(room);
+        if (existingRoom) {
+            existingRoom.status = 'RUNNING';
             return true;
         }
         return false;

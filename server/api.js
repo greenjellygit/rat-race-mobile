@@ -24,6 +24,11 @@ let api = {
                 api.emitRoomDetails(room);
             });
 
+            socket.on('start', function ({room}) {
+                service.start(room);
+                api.emitRoomDetails(room);
+            });
+
             socket.on('rooms', function ({}, fn) {
                 fn({'rooms': service.getOpenRooms()});
             });
@@ -35,7 +40,7 @@ let api = {
     },
     emitRoomDetails: (room) => {
         let userNames = service.getRoom(room).users;
-        let users = _.filter(service.users, (u) => {return _.some(userNames, u.name);});
+        let users = _.filter(service.users, (u) => {return _.indexOf(userNames, u.name) > -1;});
         _.each(users, u => {
             u.socket.emit('roomDetails', service.getRoom(room));
         })
