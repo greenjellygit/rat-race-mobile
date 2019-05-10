@@ -1,0 +1,19 @@
+<header>
+  <h2>Witojcie</h2>
+</header>
+<div>
+  Podaj swój nick:
+  <input [(ngModel)]="user">
+  <hr/>
+  <div>
+    <button (click)="createRoom()">Utwórz pokój</button>
+  </div>
+  <hr/>
+  <div>
+    ... lub wybierz pokój z listy:
+    <div *ngFor="let room of (rooms$ | async)">
+      {{room.name}}, ({{room.playersCount}} graczy), autor: {{room.authorName}}
+      <button (click)="joinRoom(room.name)">Dołącz</button>
+    </div>
+  </div>
+</div>
