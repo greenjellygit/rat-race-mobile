@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <title>SocketIO test</title>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+<body>
+<button onclick="tweet('test')">Tweet</button>
+</body>
+<script>
+    $(document).ready(function () {
+        var socket = io();
+
+        socket.emit('tweet', 'woot', function (data) { // args are sent in order to acknowledgement function
+            alert(data); // data will be 'tobi says woot'
+        });
+    });
+</script>
+</html>
