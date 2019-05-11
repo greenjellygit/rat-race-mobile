@@ -12,7 +12,7 @@ export interface RoomJoiningResponse {
 }
 
 export enum GameStatus {
-  OPEN,
-  RUNNING,
-  CLOSED
+  OPEN = 'OPEN',
+  RUNNING = 'RUNNING',
+  CLOSED = 'CLOSED'
 }

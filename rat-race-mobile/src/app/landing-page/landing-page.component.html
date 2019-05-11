@@ -18,7 +18,7 @@
     </div>
     <div class="rooms-list">
       <div *ngFor="let room of (rooms$ | async)" class="list-item">
-        {{room.name}} <span class="big-dot">●</span>  {{room.playersCount}} guests <span class="big-dot">●</span> By ~ {{room.authorName}}
+        {{room.name}} <span class="big-dot">●</span>  {{room.users.length}} guests <span class="big-dot">●</span> By ~ {{room.author}}
         <button (click)="joinRoom(room.name)" class="button-red margin-left-10">Join</button>
       </div>
     </div>

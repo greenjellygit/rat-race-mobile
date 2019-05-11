@@ -3,8 +3,8 @@
   <span [innerHTML]="doneDigits.join(', ')" style="color: red;"></span> /
   <span [innerHTML]="todoDigits.join(', ')" style="color: black;"></span>
 </div>
-<div>
-<button *ngFor="let idx of buttons" (click)="click(idx)" style="width: 30%; height: 30%; margin: 1%">
+<div style="max-width: 160px">
+<button *ngFor="let idx of buttons" (click)="click(idx)" style="width: 40px; height: 40px; margin: 5px">
   {{idx}}
 </button>
 </div>

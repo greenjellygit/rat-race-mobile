@@ -23,6 +23,7 @@
     "lodash": "^4.17.11",
     "ngx-socket-io": "latest",
     "rxjs": "~6.3.3",
+    "shake.js": "^1.2.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

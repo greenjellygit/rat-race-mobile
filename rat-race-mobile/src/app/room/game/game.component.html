@@ -1,0 +1,3 @@
+<app-dial-number-game (gameFinished)="gameFinished({gameId: 'dialNumberGame', success: $event})" *ngIf="isActiveGame('dialNumberGame')"></app-dial-number-game>
+<app-accelerate (gameFinished)="gameFinished({gameId: 'accelerate', success: $event})" *ngIf="isActiveGame('accelerate')"></app-accelerate>
+<app-dont-press-me (gameFinished)="gameFinished({gameId: 'dontPressMe', success: $event})" *ngIf="isActiveGame('dontPressMe')"></app-dont-press-me>

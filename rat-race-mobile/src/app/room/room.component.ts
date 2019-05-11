@@ -4,7 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {ActivatedRoute} from "@angular/router";
 import {RoomService} from "../common/room.service";
 import {RedirectService} from "../common/redirect.service";
-import {RoomDetails, RoomJoiningResponse} from "../model/room.model";
+import {GameStatus, RoomDetails, RoomJoiningResponse} from "../model/room.model";
 import {UserService} from "../common/user.service";
 
 @Component({
@@ -16,6 +16,7 @@ export class RoomComponent implements OnInit {
 
   _roomDetails$: Subject<RoomJoiningResponse> = new Subject()
   _roomDetails: RoomJoiningResponse
+  GameStatus = GameStatus
 
   constructor(private socket: Socket,
               private route: ActivatedRoute,
