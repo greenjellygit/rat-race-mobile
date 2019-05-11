@@ -8,10 +8,11 @@ import {FinishedGame} from "../../game/game.model";
 })
 export class GameComponent implements OnInit {
 
-  @Input() games: string[]
-  private _games: string[]
-  private activeGameIndex: number
-  private finishedGames: FinishedGame[]
+  @Input() games: string[];
+  private _games: string[];
+  private activeGameIndex: number;
+  private finishedGames: FinishedGame[] = [];
+  private finished = false;
 
   constructor() {
   }
@@ -27,13 +28,27 @@ export class GameComponent implements OnInit {
 
   gameFinished(finishedGame: FinishedGame) {
     this.activeGameIndex++;
-    this.playHappySound();
-    this.finishedGames.push(finishedGame)
+    this.finishedGames.push(finishedGame);
+    if (this.finishedGames.length >= this._games.length) {
+      this.finished = true;
+      this.playApplauseSound()
+    } else {
+      this.playHappySound();
+    }
   }
 
   playHappySound() {
     let audio = document.createElement("audio");
     audio.src = "assets/next.wav";
+    audio.addEventListener("ended", function () {
+      document.removeChild(audio);
+    }, false);
+    audio.play();
+  }
+
+  playApplauseSound() {
+    let audio = document.createElement("audio");
+    audio.src = "assets/applause.wav";
     audio.addEventListener("ended", function () {
       document.removeChild(audio);
     }, false);
