@@ -8,15 +8,23 @@ import {GameTemplateComponent} from "../game-template.component";
 })
 export class DontPressMeComponent extends GameTemplateComponent implements OnInit {
 
+  secondsLeft: number
+
   constructor() {
     super()
   }
 
   ngOnInit() {
-    setTimeout(() => this.gameFinished.emit(true), 5000)
+    this.secondsLeft = 5
+    setInterval(() => {
+      this.secondsLeft--
+      if(this.secondsLeft === 0) {
+        this.gameFinished.emit(true)
+      }
+    }, 1000)
   }
 
   buttonPressed() {
-    this.gameFinished.emit(false)
+    this.secondsLeft += 5
   }
 }

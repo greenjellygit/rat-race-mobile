@@ -12,13 +12,13 @@ import {FormsModule} from "@angular/forms";
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { DialNumberGameComponent } from './game/dial-number/dial-number-game.component';
 
-const JACEK_IP = '192.168.43.203:3000'
-const config: SocketIoConfig = { url: JACEK_IP, options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 import {RoomService} from "./common/room.service";
 import { GameComponent } from './room/game/game.component';
 import { DontPressMeComponent } from './game/dont-press-me/dont-press-me.component';
 import { AccelerateComponent } from './game/accelerate/accelerate.component';
+import { PressMeComponent } from './game/press-me/press-me.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { AccelerateComponent } from './game/accelerate/accelerate.component';
     DontPressMeComponent,
     GameComponent,
     DontPressMeComponent,
-    AccelerateComponent
+    AccelerateComponent,
+    PressMeComponent
   ],
   imports: [
     BrowserModule,
