@@ -16,6 +16,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 import {RoomService} from "./common/room.service";
 import { GameComponent } from './room/game/game.component';
+import { DontPressMeComponent } from './game/dont-press-me/dont-press-me.component';
+import { AccelerateComponent } from './game/accelerate/accelerate.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { GameComponent } from './room/game/game.component';
     LandingPageComponent,
     RoomComponent,
     DialNumberGameComponent,
-    GameComponent
+    DontPressMeComponent,
+    GameComponent,
+    DontPressMeComponent,
+    AccelerateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {FinishedGame} from "../../game/game.model";
 
 @Component({
   selector: 'app-game',
@@ -10,7 +11,7 @@ export class GameComponent implements OnInit {
   @Input() games: string[]
   private _games: string[]
   private activeGameIndex: number
-  private finishedGames: string[]
+  private finishedGames: FinishedGame[]
 
   constructor() {
   }
@@ -24,8 +25,8 @@ export class GameComponent implements OnInit {
     return this._games.indexOf(gameId) === this.activeGameIndex
   }
 
-  gameFinished(gameId: string) {
+  gameFinished(finishedGame: FinishedGame) {
     this.activeGameIndex++
-    this.finishedGames.push(gameId)
+    this.finishedGames.push(finishedGame)
   }
 }
