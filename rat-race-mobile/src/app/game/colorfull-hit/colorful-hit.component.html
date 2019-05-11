@@ -1,0 +1,6 @@
+<div>
+  Nacisnij mnie, kiedy jestem <b class="text-color-yellow">niebieski</b>
+</div>
+<div>
+  <button [ngClass]="'button-background-'+actualColor" (click)="buttonPressed(actualColor)">{{actualColor}}</button>
+</div>

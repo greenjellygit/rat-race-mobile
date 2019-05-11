@@ -2,3 +2,4 @@
 <app-accelerate (gameFinished)="gameFinished({gameId: 'accelerate', success: $event})" *ngIf="isActiveGame('accelerate')"></app-accelerate>
 <app-dont-press-me (gameFinished)="gameFinished({gameId: 'dontPressMe', success: $event})" *ngIf="isActiveGame('dontPressMe')"></app-dont-press-me>
 <app-press-me (gameFinished)="gameFinished({gameId: 'pressMe', success: $event})" *ngIf="isActiveGame('pressMe')"></app-press-me>
+<app-colorful-hit (gameFinished)="gameFinished({gameId: 'colorfulHit', success: $event})" *ngIf="isActiveGame('colorfulHit')"></app-colorful-hit>

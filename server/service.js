@@ -38,7 +38,7 @@ let service = {
             existingRoom.users = _.uniq(existingRoom.users);
             return {
                 result: true,
-                games: ['dialNumberGame', 'dontPressMe', 'pressMe'],
+                games: ['dialNumberGame', 'dontPressMe', 'pressMe', 'colorfulHit'],
                 roomDetails: existingRoom
             }
         }

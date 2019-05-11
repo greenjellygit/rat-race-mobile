@@ -19,6 +19,7 @@ import { GameComponent } from './room/game/game.component';
 import { DontPressMeComponent } from './game/dont-press-me/dont-press-me.component';
 import { AccelerateComponent } from './game/accelerate/accelerate.component';
 import { PressMeComponent } from './game/press-me/press-me.component';
+import { ColorfulHitComponent } from './game/colorfull-hit/colorful-hit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PressMeComponent } from './game/press-me/press-me.component';
     GameComponent,
     DontPressMeComponent,
     AccelerateComponent,
-    PressMeComponent
+    PressMeComponent,
+    ColorfulHitComponent
   ],
   imports: [
     BrowserModule,

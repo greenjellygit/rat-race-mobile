@@ -1,0 +1,27 @@
+
+.button-background {
+  &-YELLOW {
+    background-color: #ff5858;
+    min-height: 100px;
+    min-width: 100px;
+  }
+  &-GREEN {
+    background-color: #ffe272;
+    min-height: 100px;
+    min-width: 100px;
+  }
+  &-RED {
+    background-color: dodgerblue;
+    min-height: 100px;
+    min-width: 100px;
+  }
+  &-BLUE {
+    background-color: darkolivegreen;
+    min-height: 100px;
+    min-width: 100px;
+  }
+}
+
+.text-color-yellow {
+  color: #ffe272;
+}
