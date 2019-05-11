@@ -24,6 +24,8 @@ export class LlamasComponent extends GameTemplateComponent implements OnInit {
     'http://vdsm.americadaily.net/wp-content/uploads/2018/07/5624215-llama.jpg',
   ];
 
+  readonly COUNT = 8;
+
   score = 0;
   gameImages = [];
   selectedImages = [];
@@ -38,7 +40,7 @@ export class LlamasComponent extends GameTemplateComponent implements OnInit {
 
   init = () => {
     let shuffled_images = this.shuffle(this.IMGS_TO_SELECT);
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < this.COUNT/2; i++) {
       this.gameImages.push(shuffled_images[i]);
       this.gameImages.push(shuffled_images[i]);
     }
@@ -55,7 +57,7 @@ export class LlamasComponent extends GameTemplateComponent implements OnInit {
     img1.className = "scored";
     img2.className = "scored";
     this.score = this.score + 1;
-    if (this.score >= 8) {
+    if (this.score >= this.COUNT/2) {
       this.gameFinished.emit(true);
     }
   };

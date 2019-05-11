@@ -1,5 +1,5 @@
 <div id="game_table">
-  <div *ngFor="let image of gameImages" class="image">
+  <div *ngFor="let image of gameImages" class="image" style="float:left">
     <img #imageElement
          [src]="image" class="hidden"
          (click)="selectImg(imageElement)"/>
