@@ -9,13 +9,14 @@ import {
   ViewChildren
 } from '@angular/core';
 import {SnakeComponent} from "./snake/snake.component";
+import {GameTemplateComponent} from "../game-template.component";
 
 @Component({
   selector: 'app-nasty-snake',
   templateUrl: './nasty-snake.component.html',
   styleUrls: ['./nasty-snake.component.scss']
 })
-export class NastySnakeComponent implements OnInit, AfterViewInit {
+export class NastySnakeComponent extends GameTemplateComponent implements OnInit, AfterViewInit {
 
   snakes = [];
   snakeElements: SnakeComponent[] = [];
@@ -26,7 +27,8 @@ export class NastySnakeComponent implements OnInit, AfterViewInit {
   @ViewChild('hand') hand: ElementRef;
   @ViewChildren(SnakeComponent) snakeList: QueryList<SnakeComponent>;
 
-  @HostListener('mousedown', ['$event'])
+  @HostListener('touchstart', ['$event'])
+  @HostListener('document:mousedown', ['$event'])
   asd(e: MouseEvent) {
     this.calculateHandPosition(e);
     let sound = this.clapSound.cloneNode();
@@ -35,7 +37,8 @@ export class NastySnakeComponent implements OnInit, AfterViewInit {
     this.handVisible = true;
   }
 
-  @HostListener('mouseup', ['$event'])
+  @HostListener('touchend', ['$event'])
+  @HostListener('document:mouseup', ['$event'])
   zxc(e: MouseEvent) {
     this.calculateHandPosition(e);
     this.handVisible = false;
@@ -91,7 +94,7 @@ export class NastySnakeComponent implements OnInit, AfterViewInit {
 
   private checkGameFinished() {
     if (this.snakeElements.every((e: SnakeComponent) => e.isKilled == true)) {
-      console.log('killed')
+      this.gameFinished.emit(true);
     }
   }
 }
