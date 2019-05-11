@@ -1,7 +1,7 @@
 <div>
   Wpisz poniższą kombinację cyfr:<br>
-  <span [innerHTML]="doneDigits.join(', ')" style="color: red;"></span> /
-  <span [innerHTML]="todoDigits.join(', ')" style="color: black;"></span>
+  <span [innerHTML]="doneDigits.join(', ')" style="color: red; font-size: 30pt;"></span> /
+  <span [innerHTML]="todoDigits.join(', ')" style="color: white; font-size: 30pt"></span>
 </div>
 <div style="max-width: 160px">
 <button *ngFor="let idx of buttons" (click)="click(idx)" style="width: 40px; height: 40px; margin: 5px">

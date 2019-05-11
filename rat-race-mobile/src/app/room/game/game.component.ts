@@ -26,7 +26,17 @@ export class GameComponent implements OnInit {
   }
 
   gameFinished(finishedGame: FinishedGame) {
-    this.activeGameIndex++
+    this.activeGameIndex++;
+    this.playHappySound();
     this.finishedGames.push(finishedGame)
+  }
+
+  playHappySound() {
+    let audio = document.createElement("audio");
+    audio.src = "assets/next.wav";
+    audio.addEventListener("ended", function () {
+      document.removeChild(audio);
+    }, false);
+    audio.play();
   }
 }

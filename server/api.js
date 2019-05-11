@@ -5,11 +5,6 @@ var _ = require('lodash')
 let api = {
     init: (io) => {
         io.on('connection', function(socket){
-            console.log('a user connected');
-
-            socket.on('tweet', function ({text}, fn) {
-                fn({received: text});
-            });
 
             socket.on('createRoom', function ({user}, fn) {
                 service.registerUser(user, socket);

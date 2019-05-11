@@ -8,7 +8,7 @@ import * as Shake from 'shake.js';
   styleUrls: ['./accelerate.component.scss']
 })
 export class AccelerateComponent extends GameTemplateComponent implements OnInit, OnDestroy {
-
+  readonly LIMIT = 10
   shakingTime = 0;
   shakeEvent: Shake;
 
@@ -22,7 +22,7 @@ export class AccelerateComponent extends GameTemplateComponent implements OnInit
       return;
     }
 
-    this.shakeEvent = new Shake({threshold: 10, timeout: 200});
+    this.shakeEvent = new Shake({threshold: 150, timeout: 1000});
     this.shakeEvent.start();
     window.addEventListener('shake', this.shakeCallback, false);
   }
@@ -34,7 +34,7 @@ export class AccelerateComponent extends GameTemplateComponent implements OnInit
 
   shakeCallback = () => {
     this.shakingTime++;
-    if(this.shakingTime > 10) {
+    if(this.shakingTime >= this.LIMIT) {
       this.gameFinished.emit(true);
     }
   }
