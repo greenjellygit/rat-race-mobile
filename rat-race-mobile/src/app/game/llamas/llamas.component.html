@@ -1,0 +1,7 @@
+<div id="game_table">
+  <div *ngFor="let image of gameImages" class="image">
+    <img #imageElement
+         [src]="image" class="hidden"
+         (click)="selectImg(imageElement)"/>
+  </div>
+</div>

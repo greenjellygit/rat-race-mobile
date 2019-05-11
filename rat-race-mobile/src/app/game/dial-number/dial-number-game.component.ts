@@ -30,7 +30,13 @@ export class DialNumberGameComponent extends GameTemplateComponent {
       if (this.todoDigits.length === 0) {
         this.gameFinished.emit(true)
       }
+
+      this.buttons = this.shuffle(this.buttons);
     }
   }
+
+  shuffle = function (array) {
+    return array.sort(() => Math.random() - 0.5);
+  };
 
 }
