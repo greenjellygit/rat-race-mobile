@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RoomComponent} from "./room/room.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
+import {NastySnakeComponent} from "./game/nasty-snake/nasty-snake.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent
+  },
+  {
+    path: 'snake',
+    component: NastySnakeComponent
   }
 ];
 

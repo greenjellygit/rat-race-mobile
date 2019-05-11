@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+  height: 100%;
+  background-color: #2f2f2f;
+  display: flex;
+  user-select: none;
+}
+
+.hand {
+  position: absolute;
+  background-image: url("../../../assets/hand.png");
+  width: 170px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -70px;
+  margin-top: -50px;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
+  }
+}
