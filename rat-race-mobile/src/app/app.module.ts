@@ -13,8 +13,8 @@ import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {DialNumberGameComponent} from './game/dial-number/dial-number-game.component';
 import {RoomService} from "./common/room.service";
 import {GameComponent} from './room/game/game.component';
-import {NastySnakeComponent} from "./game/nasty-snake/nasty-snake.component";
-import {SnakeComponent} from './game/nasty-snake/snake/snake.component';
+import {ClapMosquitoComponent} from "./game/clap-mosquito/clap-mosquito.component";
+import {MosquitoComponent} from './game/clap-mosquito/mosquito/mosquito.component';
 import {DontPressMeComponent} from './game/dont-press-me/dont-press-me.component';
 import {AccelerateComponent} from './game/accelerate/accelerate.component';
 import {PressMeComponent} from './game/press-me/press-me.component';
@@ -36,8 +36,8 @@ const config: SocketIoConfig = { url: JACEK_IP, options: {} };
     AccelerateComponent,
     PressMeComponent,
     GameComponent,
-    NastySnakeComponent,
-    SnakeComponent,
+    ClapMosquitoComponent,
+    MosquitoComponent,
     PressMeComponent,
     ColorfulHitComponent,
     AccelerateComponent,

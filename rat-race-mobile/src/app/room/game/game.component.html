@@ -4,5 +4,5 @@
 <app-press-me (gameFinished)="gameFinished({gameId: 'pressMe', success: $event})" *ngIf="isActiveGame('pressMe')"></app-press-me>
 <app-colorful-hit (gameFinished)="gameFinished({gameId: 'colorfulHit', success: $event})" *ngIf="isActiveGame('colorfulHit')"></app-colorful-hit>
 <app-llamas (gameFinished)="gameFinished({gameId: 'llamas', success: $event})" *ngIf="isActiveGame('llamas')"></app-llamas>
-<app-nasty-snake (gameFinished)="gameFinished({gameId: 'nastySnake', success: $event})" *ngIf="isActiveGame('nastySnake')"></app-nasty-snake>
+<app-clap-mosquito (gameFinished)="gameFinished({gameId: 'clapMosquito', success: $event})" *ngIf="isActiveGame('clapMosquito')"></app-clap-mosquito>
 <img *ngIf="finished" src="/assets/applause.gif"/><br>

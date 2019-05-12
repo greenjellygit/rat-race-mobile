@@ -2,16 +2,17 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 
 @Component({
   selector: 'app-snake',
-  templateUrl: './snake.component.html',
-  styleUrls: ['./snake.component.scss']
+  templateUrl: './mosquito.component.html',
+  styleUrls: ['./mosquito.component.scss']
 })
-export class SnakeComponent implements AfterViewInit, OnInit {
+export class MosquitoComponent implements AfterViewInit, OnInit {
 
   @Input() initialPos: any;
   @ViewChild('enemyPlayer') enemyPlayer: ElementRef;
   @ViewChild('blood') blood: ElementRef;
   intervalHandler: any;
   isKilled = false;
+  @Input() screenBounds: any;
 
   deadSound: any;
 
@@ -47,7 +48,7 @@ export class SnakeComponent implements AfterViewInit, OnInit {
     do {
       currentMove = this.getRandomElement(allMoves)(this.enemyPlayer.nativeElement);
       blockCounter++;
-    } while ((this.isMoveAlreadySet(currentMove, enemyMoves)) && blockCounter < 50  || this.isMoveOnBorder(currentMove));
+    } while ((this.isMoveAlreadySet(currentMove, enemyMoves)) && blockCounter < 50 || this.isMoveOnBorder(currentMove));
     return currentMove;
   }
 
@@ -82,7 +83,7 @@ export class SnakeComponent implements AfterViewInit, OnInit {
   private isMoveOnBorder(currentMove) {
     let top = parseInt(currentMove.top.split('px')[0]);
     let left = parseInt(currentMove.left.split('px')[0]);
-    return top < 0 || top > 800 || left < 0 || left > 500;
+    return top < 0 || top > this.screenBounds.height || left < 0 || left > this.screenBounds.width;
   }
 
   kill() {

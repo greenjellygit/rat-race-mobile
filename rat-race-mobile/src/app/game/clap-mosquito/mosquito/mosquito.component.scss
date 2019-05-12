@@ -3,6 +3,7 @@
   height: 70px;
   position: absolute;
   transition: left ease-in-out 0.1s, top ease-in-out 0.1s;
+  z-index: 10;
 
   &.player {
     background-color: #ffe272;
@@ -15,4 +16,7 @@
   position: absolute;
   margin-left: -20px;
   z-index: 0;
+}
+:host {
+  width: 100%;
 }

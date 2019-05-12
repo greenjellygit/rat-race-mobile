@@ -8,24 +8,30 @@ import {
   ViewChild,
   ViewChildren
 } from '@angular/core';
-import {SnakeComponent} from "./snake/snake.component";
+import {MosquitoComponent} from "./mosquito/mosquito.component";
 import {GameTemplateComponent} from "../game-template.component";
 
 @Component({
-  selector: 'app-nasty-snake',
-  templateUrl: './nasty-snake.component.html',
-  styleUrls: ['./nasty-snake.component.scss']
+  selector: 'app-clap-mosquito',
+  templateUrl: './clap-mosquito.component.html',
+  styleUrls: ['./clap-mosquito.component.scss']
 })
-export class NastySnakeComponent extends GameTemplateComponent implements OnInit, AfterViewInit {
+export class ClapMosquitoComponent extends GameTemplateComponent implements OnInit, AfterViewInit {
 
-  snakes = [];
-  snakeElements: SnakeComponent[] = [];
+  mosquitos = [];
+  mosquitoComponents: MosquitoComponent[] = [];
   handVisible = false;
-  snakeSequence = 0;
+  idSequence = 0;
   clapSound: any;
+  bounds: any;
 
   @ViewChild('hand') hand: ElementRef;
-  @ViewChildren(SnakeComponent) snakeList: QueryList<SnakeComponent>;
+  @ViewChildren(MosquitoComponent) mosquitoComponentQueryList: QueryList<MosquitoComponent>;
+
+
+  constructor(private el: ElementRef) {
+    super();
+  }
 
   @HostListener('touchstart', ['$event'])
   @HostListener('document:mousedown', ['$event'])
@@ -49,8 +55,13 @@ export class NastySnakeComponent extends GameTemplateComponent implements OnInit
     this.clapSound.volume = 0.2;
     this.clapSound.src = "../../../assets/clap.mp3";
     this.clapSound.load();
+
+    this.bounds = {
+      width: this.el.nativeElement.offsetWidth - 50,
+      height: this.el.nativeElement.offsetHeight - 50
+    };
     for (let i = 0; i < 10; i++) {
-      this.snakes.push(this.generateRandomPosition());
+      this.mosquitos.push(this.generateRandomPosition());
     }
   }
 
@@ -58,29 +69,31 @@ export class NastySnakeComponent extends GameTemplateComponent implements OnInit
     if (e.target['className'] == 'snake') {
       this.hand.nativeElement.style.left = e.target['style'].left;
       this.hand.nativeElement.style.top = e.target['style'].top;
-      let clickedElem: SnakeComponent = this.findElementById(e.target['id']);
+      let clickedElem: MosquitoComponent = this.findElementById(e.target['id']);
       clickedElem.kill();
       this.checkGameFinished();
     } else if (e.target['className'] == 'blood') {
       this.hand.nativeElement.style.left = e.target['style'].left;
       this.hand.nativeElement.style.top = e.target['style'].top;
     } else {
-      this.hand.nativeElement.style.left = e.layerX + "px";
-      this.hand.nativeElement.style.top = e.layerY + "px";
+      let x = e.layerX ? e.layerX : (e['touches'] && e['touches'][0] ? e['touches'][0].clientX : 0);
+      let y = e.layerY ? e.layerY : (e['touches'] && e['touches'][0] ? e['touches'][0].clientY : 0);
+      this.hand.nativeElement.style.left = x + "px";
+      this.hand.nativeElement.style.top = y + "px";
     }
   }
 
   ngAfterViewInit(): void {
-    this.snakeList.forEach(snake => {
-      this.snakeElements.push(snake);
+    this.mosquitoComponentQueryList.forEach(snake => {
+      this.mosquitoComponents.push(snake);
     });
   }
 
   generateRandomPosition() {
     return {
-      left: this.getRandomArbitrary(0, 500),
-      top: this.getRandomArbitrary(0, 800),
-      id: this.snakeSequence++
+      left: this.getRandomArbitrary(0, this.bounds.width),
+      top: this.getRandomArbitrary(0, this.bounds.height),
+      id: this.idSequence++
     }
   }
 
@@ -89,11 +102,11 @@ export class NastySnakeComponent extends GameTemplateComponent implements OnInit
   }
 
   findElementById(snakeId) {
-    return this.snakeElements.find(e => e.initialPos.id == snakeId)
+    return this.mosquitoComponents.find(e => e.initialPos.id == snakeId)
   }
 
   private checkGameFinished() {
-    if (this.snakeElements.every((e: SnakeComponent) => e.isKilled == true)) {
+    if (this.mosquitoComponents.every((e: MosquitoComponent) => e.isKilled == true)) {
       this.gameFinished.emit(true);
     }
   }
