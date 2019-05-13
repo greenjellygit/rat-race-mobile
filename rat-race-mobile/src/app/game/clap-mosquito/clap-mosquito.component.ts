@@ -57,8 +57,8 @@ export class ClapMosquitoComponent extends GameTemplateComponent implements OnIn
     this.clapSound.load();
 
     this.bounds = {
-      width: this.el.nativeElement.offsetWidth - 50,
-      height: this.el.nativeElement.offsetHeight - 50
+      width: window.innerWidth - 50,
+      height: window.innerHeight - 50
     };
     for (let i = 0; i < 10; i++) {
       this.mosquitos.push(this.generateRandomPosition());
