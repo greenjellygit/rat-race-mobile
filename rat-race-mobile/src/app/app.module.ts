@@ -21,8 +21,10 @@ import {PressMeComponent} from './game/press-me/press-me.component';
 import {ColorfulHitComponent} from './game/colorfull-hit/colorful-hit.component';
 import { LlamasComponent } from './game/llamas/llamas.component';
 
-const JACEK_IP = '192.168.43.203:3000'
-const config: SocketIoConfig = { url: JACEK_IP, options: {} };
+const HEROKU_IP = 'https://rat-race-mobile.herokuapp.com';
+const LOCAL_IP = 'localhost:3000';
+
+const config: SocketIoConfig = { url: HEROKU_IP, options: {} };
 
 @NgModule({
   declarations: [
